@@ -5,22 +5,34 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <malloc.h>
+#include <stdlib.h>
+#ifdef __linux__
+	#include <malloc.h>
+#endif
 
 #include "ruby.h"
 
 static const char *module_name = "MemoryBuffer";
 
-
 static VALUE
-create_aligned_string(VALUE self, VALUE ralign, VALUE rlen) {
+mb_create_aligned_string(VALUE self, VALUE ralign, VALUE rlen) {
 	size_t	align	= (size_t)NUM2INT(ralign);
 	size_t	len		= (size_t)NUM2INT(rlen);
 	char	*abuf;
+	int     rc;
 	VALUE	asb;
 
-	if ((abuf = memalign(align, len)) == NULL) {
-		rb_raise(rb_eNoMemError, "Could not allocate %d bytes of aligned memory\n", len);
+#ifdef __linux__
+	abuf = memalign(align, len);
+#elif __APPLE__
+	rc = posix_memalign((void **)&abuf, align, len);
+	if (0 != rc) {
+		abuf = NULL;
+	}
+#endif
+
+	if (NULL == abuf) {
+		rb_raise(rb_eNoMemError, "Could not allocate %d bytes of aligned memory\n", (int)len);
 	}
 
 	asb = rb_str_new(NULL, 0);
@@ -42,5 +54,5 @@ void Init_memory_buffer()	{
 	 */
 	mMemoryBuffer = rb_define_module(module_name);
 
-	rb_define_singleton_method(mMemoryBuffer, "create_aligned_string", create_aligned_string, 2);
+	rb_define_singleton_method(mMemoryBuffer, "create_aligned_string", mb_create_aligned_string, 2);
 }
