@@ -15,7 +15,7 @@
 static const char *module_name = "MemoryBuffer";
 
 static VALUE
-mb_create_aligned_string(VALUE self, VALUE ralign, VALUE rlen) {
+mb_create_aligned(VALUE self, VALUE ralign, VALUE rlen) {
 	size_t	align	= (size_t)NUM2INT(ralign);
 	size_t	len		= (size_t)NUM2INT(rlen);
 	char	*abuf;
@@ -54,5 +54,5 @@ void Init_memory_buffer()	{
 	 */
 	mMemoryBuffer = rb_define_module(module_name);
 
-	rb_define_singleton_method(mMemoryBuffer, "create_aligned_string", mb_create_aligned_string, 2);
+	rb_define_singleton_method(mMemoryBuffer, "create_aligned", mb_create_aligned, 2);
 }
