@@ -12,14 +12,14 @@ module MemoryBuffer
   end
 
   def self.create_quad
-  	"\000\000\000\000\000\000\000\000"
+    "\000\000\000\000\000\000\000\000"
   end
 
   def self.create_long
-  	"\000\000\000\000"
+    "\000\000\000\000"
   end
 
   def self.create_short
-  	"\000\000"
+    "\000\000"
   end
 end
