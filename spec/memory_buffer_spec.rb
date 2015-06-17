@@ -7,10 +7,10 @@ describe MemoryBuffer do
     expect(MemoryBuffer::VERSION).not_to be nil
   end
 
-  it '.create_aligned_string' do
+  it '.create_aligned' do
     alignment = 512
     length = 5
-    buf = MemoryBuffer.create_aligned_string(alignment, length)
+    buf = MemoryBuffer.create_aligned(alignment, length)
     expect(buf).to be_kind_of(String)
     expect(buf.length).to eq(0)
     expect(buf.bytesize).to eq(0)
@@ -27,21 +27,23 @@ describe MemoryBuffer do
     1073741824,
   ]
 
-  MEMORY_SIZES.each do |bytes|
-    it ".create_zero_buffer(#{bytes})" do
-      buf = MemoryBuffer.create_zero_buffer(bytes)
-      expect(buf.length).to eq(bytes)
-      expect(buf[0, 1]).to  eq("\0")
-      expect(buf[-1, 1]).to eq("\0")
-      
-      # GC call required, otherwise the * operator in
-      # MemoryBuffer automatically fails on higher sizes
-      buf = nil
-      GC.start
+  describe ".create" do
+    MEMORY_SIZES.each do |bytes|
+      it "with #{bytes} bytes" do
+        buf = MemoryBuffer.create(bytes)
+        expect(buf.length).to eq(bytes)
+        expect(buf[0, 1]).to  eq("\0")
+        expect(buf[-1, 1]).to eq("\0")
+        
+        # GC call required, otherwise the * operator in
+        # MemoryBuffer automatically fails on higher sizes
+        buf = nil
+        GC.start
+      end
     end
   end
 
-  it('.create_quad_buffer')  { expect(MemoryBuffer.create_quad_buffer).to  eq([0].pack("Q")) }
-  it('.create_long_buffer')  { expect(MemoryBuffer.create_long_buffer).to  eq([0].pack("L")) }
-  it('.create_short_buffer') { expect(MemoryBuffer.create_short_buffer).to eq([0].pack("S")) }
+  it('.create_quad')  { expect(MemoryBuffer.create_quad).to  eq([0].pack("Q")) }
+  it('.create_long')  { expect(MemoryBuffer.create_long).to  eq([0].pack("L")) }
+  it('.create_short') { expect(MemoryBuffer.create_short).to eq([0].pack("S")) }
 end
