@@ -6,8 +6,8 @@ require 'memory_buffer/version'
 Gem::Specification.new do |spec|
   spec.name          = "memory_buffer"
   spec.version       = MemoryBuffer::VERSION
-  spec.authors       = ["Rich Oliveri", "Oleg Barenboim"]
-  spec.email         = ["roliveri@redhat.com", "chessbyte@gmail.com"]
+  spec.authors       = ["Rich Oliveri", "Oleg Barenboim", "Jason Frey"]
+  spec.email         = ["roliveri@redhat.com", "chessbyte@gmail.com", "fryguy9@gmail.com"]
 
   spec.summary       = %q{Ruby module to create memory buffers on Linux platforms.}
   spec.description   = %q{Ruby module to create memory buffers on Linux platforms.}
