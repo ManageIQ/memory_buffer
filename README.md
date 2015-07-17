@@ -1,6 +1,6 @@
 # MemoryBuffer
 
-Ruby module to create memory buffers on Linux platforms.
+Ruby module to create memory buffers on Linux and Mac platforms.
 
 [![Gem Version](https://badge.fury.io/rb/memory_buffer.svg)](http://badge.fury.io/rb/memory_buffer)
 [![Build Status](https://travis-ci.org/ManageIQ/memory_buffer.svg)](https://travis-ci.org/ManageIQ/memory_buffer)
