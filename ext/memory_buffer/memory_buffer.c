@@ -30,7 +30,7 @@ mb_create_aligned(VALUE self, VALUE ralign, VALUE rlen) {
 		abuf = NULL;
 	}
 #else
-  abuf = _aligned_malloc(len, align);
+	abuf = _aligned_malloc(len, align);
 #endif
 
 	if (NULL == abuf) {
