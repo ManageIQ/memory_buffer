@@ -22,13 +22,15 @@ mb_create_aligned(VALUE self, VALUE ralign, VALUE rlen) {
 	int     rc;
 	VALUE	asb;
 
-#ifdef __linux__
+#ifdef HAVE_MEMALIGN
 	abuf = memalign(align, len);
-#elif __APPLE__
+#elif HAVE_POSIX_MEMALIGN
 	rc = posix_memalign((void **)&abuf, align, len);
 	if (0 != rc) {
 		abuf = NULL;
 	}
+#else
+  abuf = _aligned_malloc(len, align);
 #endif
 
 	if (NULL == abuf) {
