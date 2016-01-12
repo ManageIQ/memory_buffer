@@ -23,14 +23,12 @@ mb_create_aligned(VALUE self, VALUE ralign, VALUE rlen) {
 
 #ifdef HAVE_MEMALIGN
 	abuf = memalign(align, len);
-#elif HAVE_POSIX_MEMALIGN
+#else
 	int rc;
 	rc = posix_memalign((void **)&abuf, align, len);
 	if (0 != rc) {
 		abuf = NULL;
 	}
-#else
-	abuf = _aligned_malloc(len, align);
 #endif
 
 	if (NULL == abuf) {

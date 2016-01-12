@@ -1,7 +1,7 @@
 require 'mkmf'
 
-have_func("memalign")
-have_func("posix_memalign")
-have_func("_aligned_malloc")
+unless have_func("memalign") || have_func("posix_memalign")
+  raise "Unsupported platform."
+end
 
 create_makefile("memory_buffer/memory_buffer");
