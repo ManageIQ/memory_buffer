@@ -1,5 +1,9 @@
 require "bundler/gem_tasks"
 
+if RbConfig::CONFIG['host_os'] =~ /mingw|cygwin/i
+  require "devkit"
+end
+
 require 'rake/extensiontask'
 Rake::ExtensionTask.new do |ext|
   ext.name    = 'memory_buffer'

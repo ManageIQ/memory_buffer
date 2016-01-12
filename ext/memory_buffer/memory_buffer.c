@@ -19,12 +19,12 @@ mb_create_aligned(VALUE self, VALUE ralign, VALUE rlen) {
 	size_t	align	= (size_t)NUM2INT(ralign);
 	size_t	len		= (size_t)NUM2INT(rlen);
 	char	*abuf;
-	int     rc;
 	VALUE	asb;
 
-#ifdef __linux__
+#ifdef HAVE_MEMALIGN
 	abuf = memalign(align, len);
-#elif __APPLE__
+#else
+	int rc;
 	rc = posix_memalign((void **)&abuf, align, len);
 	if (0 != rc) {
 		abuf = NULL;
