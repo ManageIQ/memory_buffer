@@ -6,7 +6,8 @@
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
-#ifdef __linux__
+
+#ifdef HAVE_MALLOC_H
 	#include <malloc.h>
 #endif
 
