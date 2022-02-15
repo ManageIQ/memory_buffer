@@ -3,8 +3,9 @@
 Ruby module to create memory buffers on Linux and Mac platforms.
 
 [![Gem Version](https://badge.fury.io/rb/memory_buffer.svg)](http://badge.fury.io/rb/memory_buffer)
-[![Build Status](https://travis-ci.org/ManageIQ/memory_buffer.svg)](https://travis-ci.org/ManageIQ/memory_buffer)
-[![Code Climate](http://img.shields.io/codeclimate/github/ManageIQ/memory_buffer.svg)](https://codeclimate.com/github/ManageIQ/memory_buffer)
+[![CI](https://github.com/ManageIQ/memory_buffer/actions/workflows/ci.yaml/badge.svg)](https://github.com/ManageIQ/memory_buffer/actions/workflows/ci.yaml)
+[![Code Climate](https://codeclimate.com/github/ManageIQ/memory_buffer.svg)](https://codeclimate.com/github/ManageIQ/memory_buffer)
+[![Test Coverage](https://codeclimate.com/github/ManageIQ/memory_buffer/badges/coverage.svg)](https://codeclimate.com/github/ManageIQ/memory_buffer/coverage)
 
 ## Installation
 
