@@ -34,7 +34,7 @@ describe MemoryBuffer do
         expect(buf.length).to eq(bytes)
         expect(buf[0, 1]).to  eq("\0")
         expect(buf[-1, 1]).to eq("\0")
-        
+
         # GC call required, otherwise the * operator in
         # MemoryBuffer automatically fails on higher sizes
         buf = nil
